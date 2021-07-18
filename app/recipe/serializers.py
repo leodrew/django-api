@@ -1,6 +1,3 @@
-# from django.db.models import fields
-# from django.contrib.auth import models
-# from django.conf import settings
 from rest_framework import serializers
 
 from core.models import Ingredient, Tag, Recipe
@@ -46,3 +43,11 @@ class RecipeSerializer(serializers.ModelSerializer):
 class RecipeDetailSerializer(RecipeSerializer):
     ingreidents = IngreidentSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True, read_only=True)
+
+
+class RecipeImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Recipe
+        fields = ('id', 'image')
+        read_only_fields = ('id',)
